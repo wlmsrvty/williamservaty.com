@@ -1,113 +1,167 @@
-import Image from "next/image";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Project from "@/components/project";
+import { FaLinkedin } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
+import { ModeToggle } from "@/components/toggle-theme";
+import { GoArrowUpRight } from "react-icons/go";
+
+const projects = {
+  "git-go": {
+    id: 0,
+    title: "git-go",
+    description:
+      "Git implementation in Go to learn more about git internals and learn Go",
+    tags: ["Go"],
+    link: "https://github.com/wlmsrvty/git-go",
+  },
+  bittorrent: {
+    id: 1,
+    title: "ownbittorrent",
+    description: "A basic bittorrent client written in C++",
+    tags: ["C++", "CMake"],
+    link: "https://github.com/wlmsrvty/ownbittorrent",
+  },
+};
+
+const university_projects = {
+  tiger: {
+    title: "Tiger Compiler",
+    description: (
+      <span>
+        A compiler for the{" "}
+        <a
+          href="https://assignments.lrde.epita.fr/reference_manual/tiger_language_reference_manual/tiger_language_reference_manual.html"
+          className="font-semibold"
+        >
+          Tiger language
+        </a>
+        <GoArrowUpRight className="inline" /> written in C++
+      </span>
+    ),
+    tags: ["C++", "Flex", "Bison"],
+  },
+  "42sh": {
+    title: "42sh",
+    description: (
+      <span>
+        A{" "}
+        <a
+          className="font-semibold"
+          href="https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html"
+        >
+          POSIX
+        </a>
+        <GoArrowUpRight className="inline" /> compliant shell interpreter
+        written in C, hand-written lexer and parser
+      </span>
+    ),
+    tags: ["C"],
+  },
+  libc: {
+    title: "UNIX",
+    description:
+      "Re-implementation of UNIX utility tools in C: find, make, malloc",
+    tags: ["C"],
+  },
+};
+
+const links = {
+  github: "https://github.com/wlmsrvty",
+  linkedin: "https://www.linkedin.com/in/williamservaty/",
+};
+
+function Title({ title }: { title: string }) {
+  return <h2 className="text-xl font-semibold mb-4">{title}</h2>;
+}
+
+function Socials() {
+  return (
+    <div className="flex flex-row justify-center gap-2 text-sm md:text-base md:gap-10">
+      <a href={links.linkedin}>
+        <div className="flex items-center gap-1 font-normal py-0 px-1 underline">
+          <FaLinkedin />
+          <p>williamservaty</p>
+        </div>
+      </a>
+      <a href={links.github}>
+        <div className="flex items-center gap-1 font-normal py-0 px-1 underline">
+          <FaGithub />
+          <p>wlmsrvty</p>
+        </div>
+      </a>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="flex flex-col h-screen justify-between dark:bg-neutral-950">
+      <main className="antialiased flex flex-col items-center px-6 sm:px-20 pt-3 sm:pt-20">
+        <div className="max-w-screen-sm">
+          <div className="flex items-center">
+            <div className="flex gap-1 md:gap-3 grow items-center justify-center dark:text-white text-black">
+              <div>
+                <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarFallback>WS</AvatarFallback>
+                </Avatar>
+              </div>
+              <div className="flex items-center flex-col justify-center gap-y-3">
+                <h1 className="text-2xl sm:text-5xl font-bold text-center">
+                  William Servaty
+                </h1>
+                <Socials />
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <p className="text-base mt-8">
+              I am William Servaty, a graduating software engineer from France,
+              deeply interested in{" "}
+              <span className="font-semibold">programming</span> and{" "}
+              <span className="font-semibold">algorithms</span>.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 divide-neutral-600">
+            <div className="py-6">
+              <Title title="Some of my personal projects" />
+              <div className="flex flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+                <Project
+                  title={projects["git-go"].title}
+                  description={projects["git-go"].description}
+                  tags={projects["git-go"].tags}
+                  link={projects["git-go"].link}
+                />
+                <Project
+                  title={projects.bittorrent.title}
+                  description={projects.bittorrent.description}
+                  tags={projects.bittorrent.tags}
+                  link={projects.bittorrent.link}
+                />
+              </div>
+            </div>
+
+            <div className="pt-4">
+              <Title title="University projects" />
+              <div className="flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+                <Project {...university_projects.tiger} />
+                <Project {...university_projects["42sh"]} />
+                <Project {...university_projects.libc} />
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8">
+          </div>
         </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      </main>
+      <footer>
+        <div className="flex justify-end p-5 sm:p-10">
+            <ModeToggle />
+        </div>
+      </footer>
+    </div>
   );
 }
