@@ -17,7 +17,8 @@ export function ModeToggle() {
 
   return (
     <>
-      {(window.localStorage && window.localStorage.theme === "light") && (
+      {(!window.localStorage.theme ||
+        window.localStorage.theme === "light") && (
         <Button
           variant="outline"
           size="icon"
@@ -29,7 +30,7 @@ export function ModeToggle() {
         </Button>
       )}
 
-      { (!localStorage.theme || localStorage.theme === "dark" ) && (
+      {window.localStorage.theme && window.localStorage.theme === "dark" && (
         <Button
           variant="outline"
           size="icon"
