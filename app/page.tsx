@@ -1,16 +1,23 @@
+import dynamic from "next/dynamic";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Project from "@/components/project";
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
-import { ModeToggle } from "@/components/toggle-theme";
 import { GoArrowUpRight } from "react-icons/go";
+import { GoDash } from "react-icons/go";
+import { BsDashLg } from "react-icons/bs";
+
+const ModeToggle = dynamic(() => import("@/components/toggle-theme"), {
+  ssr: false,
+});
 
 const projects = {
   "git-go": {
     id: 0,
     title: "git-go",
     description:
-      "Git implementation in Go to learn more about git internals and learn Go",
+      "A re-implementation of Git in Go to learn more about git internals and learn Go",
     tags: ["Go"],
     link: "https://github.com/wlmsrvty/git-go",
   },
@@ -31,6 +38,7 @@ const university_projects = {
         A compiler for the{" "}
         <a
           href="https://assignments.lrde.epita.fr/reference_manual/tiger_language_reference_manual/tiger_language_reference_manual.html"
+          target="_blank"
           className="font-semibold"
         >
           Tiger language
@@ -39,6 +47,7 @@ const university_projects = {
       </span>
     ),
     tags: ["C++", "Flex", "Bison"],
+    date: "3rd year"
   },
   "42sh": {
     title: "42sh",
@@ -46,8 +55,9 @@ const university_projects = {
       <span>
         A{" "}
         <a
-          className="font-semibold"
           href="https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html"
+          target="_blank"
+          className="font-semibold"
         >
           POSIX
         </a>
@@ -55,13 +65,36 @@ const university_projects = {
         written in C, hand-written lexer and parser
       </span>
     ),
-    tags: ["C"],
+    tags: ["C", "Autotools"],
+    date: "3rd year"
   },
   libc: {
     title: "UNIX",
     description:
       "Re-implementation of UNIX utility tools in C: find, make, malloc",
     tags: ["C"],
+    date: "3rd year"
+  },
+  srs: {
+    title: "Enterprise infrastructure",
+    description:
+      "Designed, maintained and documented an enterprise-like infrastructure.",
+    tags: [
+      "Windows Active Directory",
+      "pfSense",
+      "Ansible",
+      "Virtualization",
+      "OpenVPN",
+      "Web Servers",
+    ],
+    date: "4-5th year"
+  },
+  srsviro: {
+    title: "notmaverick",
+    description:
+      "Educational ransomware project, custom C2, multi-stage attack",
+    tags: ["C#", "C", "C++", "Win32 API", "PowerShell", "JavaScript"],
+    date: "5th year"
   },
 };
 
@@ -102,7 +135,7 @@ export default function Home() {
             <div className="flex gap-1 md:gap-3 grow items-center justify-center dark:text-white text-black">
               <div>
                 <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarImage src="/william_servaty.jpg" />
                   <AvatarFallback>WS</AvatarFallback>
                 </Avatar>
               </div>
@@ -124,8 +157,22 @@ export default function Home() {
             </p>
           </div>
 
+          {/*
+          <div className="mt-8">
+            <Title title="Education" />
+            <ul className="list-disc ml-4">
+                <li>MSc, Computer Science, EPITA Engineering School, Paris, France
+                    <span className="float-right">2019<GoDash className="inline-block"/>2024</span>
+                </li>
+                <li>Exchange program semester, EWHA University, Seoul, South Korea
+                    <span className="float-right">2021</span>
+                </li>
+            </ul>
+          </div>
+*/}
+
           <div className="grid grid-cols-1 divide-neutral-600">
-            <div className="py-6">
+            <div className="mt-8">
               <Title title="Some of my personal projects" />
               <div className="flex flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                 <Project
@@ -143,23 +190,41 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="pt-4">
+            <div className="mt-8">
               <Title title="University projects" />
-              <div className="flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+              <p>
+                The following showcases some of my school projects completed at <span className="font-semibold">EPITA</span>:
+              </p>
+              <div className="flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 mt-4">
                 <Project {...university_projects.tiger} />
                 <Project {...university_projects["42sh"]} />
                 <Project {...university_projects.libc} />
+              </div>
+              <div className="flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 mt-4">
+                <Project {...university_projects.srs} />
+                <Project {...university_projects.srsviro} />
               </div>
             </div>
           </div>
 
           <div className="mt-8">
+            <Title title="Hobbies" />
+            <p>
+              Beyond my interest for programming and computer science in
+              general, I am an avid <span className="font-bold">aviation</span>{" "}
+              enthusiast (
+              <span className="italic">
+                also playing Microsoft Flight Simulator{" "}
+              </span>
+              ) and have been playing the{" "}
+              <span className="font-bold">piano</span> since little.
+            </p>
           </div>
         </div>
       </main>
       <footer>
         <div className="flex justify-end p-5 sm:p-10">
-            <ModeToggle />
+          <ModeToggle />
         </div>
       </footer>
     </div>
