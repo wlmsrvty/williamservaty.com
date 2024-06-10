@@ -38,7 +38,7 @@ export default function Project({
   return (
     <div
       className="flex sm:w-80 rounded-md border shadow-lg dark:shadow-neutral-800/50 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:border-neutral-500
-    hover:border-neutral-400"
+    hover:border-neutral-400 dark:hover:bg-neutral-900/90 hover:bg-neutral-50"
     >
       <div className="flex grow flex-col justify-between">
         <div className="flex flex-col pt-2 px-3">
