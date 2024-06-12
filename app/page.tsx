@@ -23,10 +23,10 @@ const projects = {
   },
   bittorrent: {
     id: 1,
-    title: "ownbittorrent",
+    title: "wbittorrent",
     description: "A basic bittorrent client written in C++",
     tags: ["C++", "CMake"],
-    link: "https://github.com/wlmsrvty/ownbittorrent",
+    link: "https://github.com/wlmsrvty/wbittorrent",
   },
 };
 
@@ -47,7 +47,7 @@ const university_projects = {
       </span>
     ),
     tags: ["C++", "Flex", "Bison"],
-    date: "3rd year"
+    date: "3rd year",
   },
   "42sh": {
     title: "42sh",
@@ -66,14 +66,14 @@ const university_projects = {
       </span>
     ),
     tags: ["C", "Autotools"],
-    date: "3rd year"
+    date: "3rd year",
   },
   libc: {
     title: "UNIX",
     description:
       "Re-implementation of UNIX utility tools in C: find, make, malloc",
     tags: ["C"],
-    date: "3rd year"
+    date: "3rd year",
   },
   srs: {
     title: "Enterprise infrastructure",
@@ -87,14 +87,14 @@ const university_projects = {
       "OpenVPN",
       "Web Servers",
     ],
-    date: "4-5th year"
+    date: "4-5th year",
   },
   srsviro: {
     title: "notmaverick",
     description:
       "Educational ransomware project, custom C2, multi-stage attack",
     tags: ["C#", "C", "C++", "Win32 API", "PowerShell", "JavaScript"],
-    date: "5th year"
+    date: "5th year",
   },
 };
 
@@ -193,7 +193,8 @@ export default function Home() {
             <div className="mt-8">
               <Title title="University projects" />
               <p>
-                The following showcases some of my school projects completed at <span className="font-semibold">EPITA</span>:
+                The following showcases some of my school projects completed at{" "}
+                <span className="font-semibold">EPITA</span>:
               </p>
               <div className="flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 mt-4">
                 <Project {...university_projects.tiger} />
@@ -201,7 +202,9 @@ export default function Home() {
                 <Project {...university_projects.libc} />
               </div>
               <div className="flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 mt-4">
-                <Project {...university_projects.srs} />
+                {
+                  // <Project {...university_projects.srs} /> }
+                }
                 <Project {...university_projects.srsviro} />
               </div>
             </div>
