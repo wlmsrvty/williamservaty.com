@@ -150,7 +150,7 @@ export default function Home() {
 
           <div>
             <p className="text-base mt-8">
-              I am William Servaty, a graduating software engineer from France,
+              I am William Servaty, a graduate software engineer from France,
               deeply interested in{" "}
               <span className="font-semibold">programming</span> and{" "}
               <span className="font-semibold">algorithms</span>.
@@ -215,11 +215,7 @@ export default function Home() {
             <p>
               Beyond my interest for programming and computer science in
               general, I am an avid <span className="font-bold">aviation</span>{" "}
-              enthusiast (
-              <span className="italic">
-                also playing Microsoft Flight Simulator{" "}
-              </span>
-              ) and have been playing the{" "}
+              enthusiast and have been playing the{" "}
               <span className="font-bold">piano</span> since little.
             </p>
           </div>
